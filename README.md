@@ -14,18 +14,7 @@ A complete URL shortening service built with FastAPI and SQLite, similar to bit.
 
 ## Quick Start
 
-### Option 1: Docker (Recommended)
-
-```bash
-# Build and run with Docker Compose
-docker-compose up --build
-
-# Or build and run with Docker
-docker build -t url-shortener .
-docker run -p 8000:8000 url-shortener
-```
-
-### Option 2: Local Development
+### Local Development
 
 ```bash
 # Install dependencies
@@ -37,27 +26,6 @@ uvicorn app.main:app --reload
 # Run tests
 pytest -v
 ```
-
-### Option 3: Heroku Deployment
-
-```bash
-# Install Heroku CLI and login
-heroku login
-
-# Create Heroku app
-heroku create your-url-shortener-app
-
-# Add PostgreSQL database
-heroku addons:create heroku-postgresql:mini
-
-# Deploy
-git push heroku main
-
-# Open your app
-heroku open
-```
-
-**For detailed Heroku deployment instructions, see [HEROKU_DEPLOYMENT.md](HEROKU_DEPLOYMENT.md)**
 
 ## API Endpoints
 
@@ -144,8 +112,7 @@ curl "http://localhost:8000/health"
 - **Rate Limiting**: Prevents API abuse
 - **CORS Support**: Cross-origin request handling
 - **Logging**: Comprehensive request and error logging
-- **Docker Support**: Easy deployment and scaling
-- **Heroku Ready**: Production deployment ready
+
 
 ## Testing
 
@@ -171,7 +138,7 @@ pytest -v
 - **SQLite**: Lightweight database
 - **Pydantic**: Data validation
 - **SlowAPI**: Rate limiting
-- **Docker**: Containerization
+
 
 ### Database Schema
 ```sql
@@ -189,7 +156,7 @@ urls (
 - **Scalable**: Easy to extend with additional features
 - **Production-ready**: Proper error handling, validation, and monitoring
 - **Developer-friendly**: Interactive API documentation
-- **Containerized**: Easy deployment with Docker
+
 
 ## Example Usage
 
@@ -219,43 +186,9 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 pytest -v
 ```
 
-### Docker Development
-```bash
-# Build and run with hot reload
-docker-compose up --build
-
-# Run tests in container
-docker-compose exec url-shortener pytest -v
-```
-
 ### Database
 The SQLite database (`urls.db`) is created automatically on first run.
 
-## Production Deployment
-
-### Docker Deployment
-```bash
-# Build production image
-docker build -t url-shortener:latest .
-
-# Run with environment variables
-docker run -d \
-  -p 8000:8000 \
-  -e DATABASE_URL=sqlite:///./urls.db \
-  -v $(pwd)/urls.db:/app/urls.db \
-  url-shortener:latest
-```
-
-### Heroku Deployment
-```bash
-# Quick deployment
-heroku create your-app-name
-heroku addons:create heroku-postgresql:mini
-git push heroku main
-heroku open
-```
-
-**For detailed Heroku instructions, see [HEROKU_DEPLOYMENT.md](HEROKU_DEPLOYMENT.md)**
 
 ### Environment Variables
 - `DATABASE_URL`: Database connection string (default: SQLite)
