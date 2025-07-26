@@ -65,11 +65,11 @@ def get_db():
 #          ROUTES BELOW
 # --------------------------------
 
+
 @app.get("/")
-def read_root():
-    return {
-        "message": "Welcome to the URL Shortener API. Visit /docs for Swagger UI or use /shorten to shorten URLs."
-    }
+def redirect_to_docs():
+    return RedirectResponse(url="/docs")
+
 
 @app.get("/favicon.ico")
 def favicon():
